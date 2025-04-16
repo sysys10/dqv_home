@@ -15,7 +15,7 @@ export default function TopNav() {
       }}
       className="h-16 fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 border-gray-200"
     >
-      <nav className="flex max-w-6xl mx-auto items-center justify-between h-full">
+      <nav className="flex max-w-6xl mx-auto items-center justify-between h-full px-4">
         <div className="flex items-center gap-4">
           <Image
             style={{
