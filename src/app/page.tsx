@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <TopNav />
-      <main className="w-full pt-28 max-w-4xl mx-auto pb-20">
+      <main className="w-full pt-40 max-w-4xl mx-auto pb-20">
         <SectionHeader
           title="SYSTEM to AGENT, 시스템의 에이전트화"
           subtitle={
