@@ -18,12 +18,7 @@ export default function Home() {
     <AnimatePresence>
       <div>
         <TopNav />
-        <motion.main
-          className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+        <motion.main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4">
           <SectionHeader
             title="SYSTEM to AGENT, 시스템의 에이전트화"
             subtitle={
@@ -34,13 +29,7 @@ export default function Home() {
             }
           />
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10">
             {infoTabs.map((tab, index) => (
               <motion.div
                 key={tab.title}
@@ -54,13 +43,7 @@ export default function Home() {
             ))}
           </motion.div>
 
-          <motion.div
-            className="mt-24 md:mt-32"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div className="mt-24 md:mt-32">
             <SectionHeader
               title="QV-1 큐비원 소개"
               subtitle={
@@ -74,13 +57,7 @@ export default function Home() {
             <VideoSection videoId={dqvIntroVideoId} />
           </motion.div>
 
-          <motion.section
-            className="mt-24 md:mt-28"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.section className="mt-24 md:mt-28">
             <SectionHeader
               title="QV-1 큐비원 특장점"
               subtitle={
@@ -92,47 +69,22 @@ export default function Home() {
               }
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {qv1advantage.map((advantage, index) => (
-                <motion.div
-                  key={advantage.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                >
+            <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10">
+              {qv1advantage.map((advantage) => (
+                <motion.div key={advantage.title}>
                   <InfoTab {...advantage} />
                 </motion.div>
               ))}
             </motion.div>
           </motion.section>
 
-          <motion.section
-            className="mt-24"
-            id="customer-cases"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.section className="mt-24" id="customer-cases">
             <SectionHeader
               title="QV-1 적용 에이전트 구축 사례"
               subtitle="IT기업들과 협력하여 AI 에이전트 전환/개발 사업을 추진하고 있습니다"
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16 mt-8 md:mt-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16 mt-8 md:mt-12">
               {exampleFolders.map((folder, index) => (
                 <motion.div
                   key={`${folder.name}-${index}`}
@@ -161,13 +113,7 @@ export default function Home() {
           >
             <SectionHeader title="구성 멤버" />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 md:mt-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 md:mt-12">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}

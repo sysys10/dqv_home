@@ -37,7 +37,7 @@ export default function TeamMember({ name, title, description }: TeamMemberProps
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
         >
           {name}
         </motion.h3>
@@ -46,7 +46,7 @@ export default function TeamMember({ name, title, description }: TeamMemberProps
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: 0.3 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
         >
           {title}
         </motion.p>
@@ -57,7 +57,7 @@ export default function TeamMember({ name, title, description }: TeamMemberProps
             initial={{ opacity: 0, x: -5 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+            transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
           >
             {line}
           </motion.p>
