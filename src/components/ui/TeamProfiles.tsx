@@ -1,16 +1,21 @@
-type TeamMemberProps = {
-  name: string;
-  title: string;
-  description: string[];
-};
+'use client'
+import { motion } from 'framer-motion'
 
-export default function TeamMember({
-  name,
-  title,
-  description,
-}: TeamMemberProps) {
+type TeamMemberProps = {
+  name: string
+  title: string
+  description: string[]
+}
+
+export default function TeamMember({ name, title, description }: TeamMemberProps) {
   return (
-    <div className="flex items-start">
+    <motion.div
+      className="flex items-start"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex-shrink-0 w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
         <svg
           className="w-12 h-12 text-indigo-900"
@@ -27,14 +32,37 @@ export default function TeamMember({
         </svg>
       </div>
       <div>
-        <h3 className="text-lg font-bold">{name}</h3>
-        <p className="text-gray-700 font-medium">{title}</p>
+        <motion.h3
+          className="text-lg font-bold"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
+          {name}
+        </motion.h3>
+        <motion.p
+          className="text-gray-700 font-medium"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, delay: 0.3 }}
+        >
+          {title}
+        </motion.p>
         {description.map((line, index) => (
-          <p key={index} className="text-gray-600 text-sm mt-1">
+          <motion.p
+            key={index}
+            className="text-gray-600 text-sm mt-1"
+            initial={{ opacity: 0, x: -5 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+          >
             {line}
-          </p>
+          </motion.p>
         ))}
       </div>
-    </div>
-  );
+    </motion.div>
+  )
 }
