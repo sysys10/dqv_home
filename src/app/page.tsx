@@ -1,34 +1,40 @@
 'use client'
 
-import { AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import TopNav from '@/components/layout/TopNav'
-import ExampleFolder from '@/components/ui/ExampleFolder'
-import InfoTab from '@/components/ui/InfoTab'
 import SectionHeader from '@/components/ui/SectionHeader'
-import TeamMember from '@/components/ui/TeamProfiles'
+import InfoTab from '@/components/ui/InfoTab'
 import VideoSection from '@/components/ui/VideoSection'
-import { exampleFolders } from '@/constants/example.constant'
+import ExampleFolder from '@/components/ui/ExampleFolder'
+import TeamMember from '@/components/ui/TeamProfiles'
+import ConsultForm from '@/components/ui/ConsultForm'
+
 import { infoTabs, qv1advantage } from '@/constants/infotab.constant'
-import { teamMembers } from '@/constants/teamMembers.constant'
 import { dqvIntroVideoId } from '@/constants/video.constant'
-import { motion } from 'framer-motion'
+import { exampleFolders } from '@/constants/example.constant'
+import { teamMembers } from '@/constants/teamMembers.constant'
 
 export default function Home() {
   return (
     <AnimatePresence>
-      <div>
+      <div className="min-h-screen flex flex-col">
         <TopNav />
-        <motion.main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4">
+
+        <motion.main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4 flex-1">
+          {/* 시스템 소개 */}
           <SectionHeader
             title="SYSTEM to AGENT, 시스템의 에이전트화"
             subtitle={
               <>
-                다큐브는 TEXT-to-SQL AI 에이전트를 연구/개발합니다. <br /> AI 에이전트 개발의 핵심기술입니다. <br />{' '}
+                다큐브는 TEXT-to-SQL AI 에이전트를 연구/개발합니다. <br />
+                AI 에이전트 개발의 핵심기술입니다. <br />
                 IT기업들과 협력하여 시스템을 에이전트로 전환합니다.
               </>
             }
           />
 
+          {/* 기능 탭 */}
           <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10">
             {infoTabs.map((tab, index) => (
               <motion.div
@@ -43,6 +49,7 @@ export default function Home() {
             ))}
           </motion.div>
 
+          {/* QV-1 소개 */}
           <motion.div className="mt-24 md:mt-32">
             <SectionHeader
               title="QV-1 큐비원 소개"
@@ -57,6 +64,7 @@ export default function Home() {
             <VideoSection videoId={dqvIntroVideoId} />
           </motion.div>
 
+          {/* 특장점 */}
           <motion.section className="mt-24 md:mt-28">
             <SectionHeader
               title="QV-1 큐비원 특장점"
@@ -68,7 +76,6 @@ export default function Home() {
                 </>
               }
             />
-
             <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:mt-16 px-4 md:px-10">
               {qv1advantage.map((advantage) => (
                 <motion.div key={advantage.title}>
@@ -78,12 +85,12 @@ export default function Home() {
             </motion.div>
           </motion.section>
 
+          {/* 적용사례 */}
           <motion.section className="mt-24" id="customer-cases">
             <SectionHeader
               title="QV-1 적용 에이전트 구축 사례"
               subtitle="IT기업들과 협력하여 AI 에이전트 전환/개발 사업을 추진하고 있습니다"
             />
-
             <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 gap-y-16 mt-8 md:mt-12">
               {exampleFolders.map((folder, index) => (
                 <motion.div
@@ -104,6 +111,7 @@ export default function Home() {
             </motion.div>
           </motion.section>
 
+          {/* 구성 멤버 */}
           <motion.div
             className="mt-24"
             initial={{ opacity: 0 }}
@@ -112,7 +120,6 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <SectionHeader title="구성 멤버" />
-
             <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 md:mt-12">
               {teamMembers.map((member, index) => (
                 <motion.div
@@ -127,12 +134,41 @@ export default function Home() {
                     stiffness: 100,
                   }}
                 >
-                  <TeamMember name={member.name} title={member.title} description={member.description} />
+                  <TeamMember
+                    name={member.name}
+                    title={member.title}
+                    description={member.description}
+                  />
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
+
+          {/* 상담신청 */}
+          <motion.div
+            className="mt-24"
+            id="consult-form"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionHeader title="상담신청" />
+            <ConsultForm />
+          </motion.div>
         </motion.main>
+
+        {/* 푸터 */}
+        <footer className="bg-black text-white text-sm px-4 py-6 text-center">
+          <div className="max-w-4xl mx-auto space-y-2">
+            <p>DAQUV &nbsp;&nbsp;|&nbsp;&nbsp; 서울 영등포구 양산로220 KnK디지털타워 802호</p>
+            <p>대표이사 윤예지 &nbsp;&nbsp;|&nbsp;&nbsp; 사업자등록번호 763-87-02018</p>
+            <div className="flex justify-center space-x-4 pt-2">
+              <a href="#" className="underline">이용약관</a>
+              <a href="#" className="underline">개인정보처리방침</a>
+            </div>
+          </div>
+        </footer>
       </div>
     </AnimatePresence>
   )
