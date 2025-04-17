@@ -18,7 +18,7 @@ export default function Home() {
     <AnimatePresence>
       <div>
         <TopNav />
-        <motion.main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4">
+        <main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4">
           <SectionHeader
             title="SYSTEM to AGENT, 시스템의 에이전트화"
             subtitle={
@@ -132,7 +132,7 @@ export default function Home() {
               ))}
             </motion.div>
           </motion.div>
-        </motion.main>
+        </main>
       </div>
     </AnimatePresence>
   )
