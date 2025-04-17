@@ -85,7 +85,7 @@ export default function ConsultForm() {
         </div>
 
         <button type="submit" className="w-full bg-[#202F76] text-white py-2 rounded hover:opacity-90">
-          보내기
+          상담 신청하기 
         </button>
       </form>
 
@@ -106,7 +106,10 @@ export default function ConsultForm() {
       )}
 
       {showMarketingModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div
+          onClick={() => setShowPrivacyModal(!showPrivacyModal)}
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+        >
           <div className="bg-white p-6 rounded shadow-lg max-w-md w-full">
             <h4 className="font-semibold text-lg mb-4">마케팅 수신 동의</h4>
             <p className="text-sm text-gray-700">여기에 상세 내용 입력</p>

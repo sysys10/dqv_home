@@ -8,6 +8,7 @@ import VideoSection from '@/components/ui/VideoSection'
 import ExampleFolder from '@/components/ui/ExampleFolder'
 import TeamMember from '@/components/ui/TeamProfiles'
 import ConsultForm from '@/components/ui/ConsultForm'
+import Footer from '@/components/ui/footer'
 
 import { infoTabs, qv1advantage } from '@/constants/infotab.constant'
 import { dqvIntroVideoId } from '@/constants/video.constant'
@@ -153,21 +154,9 @@ export default function Home() {
           </motion.div>
         </main>
 
-        {/* 푸터 */}
-        <footer className="bg-black text-white text-sm px-4 py-6 text-center">
-          <div className="max-w-4xl mx-auto flex h-full space-x-2 items-center">
-            <p>DAQUV &nbsp;&nbsp;|&nbsp;&nbsp; 서울 영등포구 양산로220 KnK디지털타워 802호</p>
-            <p>대표이사 윤예지 &nbsp;&nbsp;|&nbsp;&nbsp; 사업자등록번호 763-87-02018</p>
-            <div className="flex justify-center space-x-4 ml-8">
-              <a href="#" className="underline">
-                이용약관
-              </a>
-              <a href="#" className="underline">
-                개인정보처리방침
-              </a>
-            </div>
-          </div>
-        </footer>
+         {/* 푸터 */}
+      <Footer />
+
       </div>
     </AnimatePresence>
   )
