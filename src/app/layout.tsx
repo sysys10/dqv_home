@@ -3,7 +3,7 @@ import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 
 const notosansKr = Noto_Sans_KR({
-  variable: '--font-noto-sans-kr',
+  weight: '500',
   subsets: ['latin'],
 })
 
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notosansKr.variable} font-noto-sans-kr`}>{children}</body>
+      <body className={`${notosansKr.className} font-noto-sans-kr`}>{children}</body>
     </html>
   )
 }

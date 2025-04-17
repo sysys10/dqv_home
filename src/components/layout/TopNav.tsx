@@ -1,21 +1,21 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { useYheight } from "@/hooks/useYheight";
-import { motion } from "framer-motion";
+import Image from 'next/image'
+import Link from 'next/link'
+import { useYheight } from '@/hooks/useYheight'
+import { motion } from 'framer-motion'
 
 export default function TopNav() {
-  const yHeight = useYheight();
+  const yHeight = useYheight()
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       style={{
-        backgroundColor: yHeight > 0 ? "#647AE1" : "transparent",
-        color: yHeight > 0 ? "white" : "black",
+        backgroundColor: yHeight > 0 ? '#647AE1' : 'transparent',
+        color: yHeight > 0 ? 'white' : 'black',
       }}
       className="h-16 fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 border-gray-200"
     >
@@ -23,11 +23,11 @@ export default function TopNav() {
         <motion.div
           className="flex items-center gap-4"
           whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
         >
           <Image
             style={{
-              filter: yHeight > 0 ? "invert(0)" : "invert(1)",
+              filter: yHeight > 0 ? 'invert(0)' : 'invert(1)',
             }}
             src="/dqv_logo.png"
             alt="다큐브 QV-1"
@@ -36,7 +36,7 @@ export default function TopNav() {
           />
         </motion.div>
         <div className="flex items-center gap-4 text-lg font-bold">
-          {["/#customer-cases", "/#news", "/"].map((href, index) => (
+          {['/#customer-cases', '/#news', '/'].map((href, index) => (
             <motion.div
               key={href}
               initial={{ opacity: 0, y: -10 }}
@@ -44,22 +44,18 @@ export default function TopNav() {
               transition={{
                 duration: 0.3,
                 delay: index * 0.1,
-                ease: "easeOut",
+                ease: 'easeOut',
               }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               <Link href={href}>
-                {href === "/#customer-cases"
-                  ? "고객사례"
-                  : href === "/#news"
-                  ? "소식"
-                  : "블로그"}
+                {href === '/#customer-cases' ? '고객사례' : href === '/#news' ? '소식' : '블로그'}
               </Link>
             </motion.div>
           ))}
         </div>
       </nav>
     </motion.header>
-  );
+  )
 }

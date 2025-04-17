@@ -30,5 +30,6 @@ const teamMembers = [
     title: "연세대학교 정보보호 석사",
     description: ["69구름 엔지니어", "시스템 개발"],
   },
+  
 ];
 export { teamMembers };

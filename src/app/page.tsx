@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import TopNav from '@/components/layout/TopNav'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -21,7 +20,7 @@ export default function Home() {
       <div className="min-h-screen flex flex-col">
         <TopNav />
 
-        <motion.main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4 flex-1">
+        <main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4 flex-1">
           {/* 시스템 소개 */}
           <SectionHeader
             title="SYSTEM to AGENT, 시스템의 에이전트화"
@@ -152,7 +151,7 @@ export default function Home() {
             <SectionHeader title="상담신청" />
             <ConsultForm />
           </motion.div>
-        </motion.main>
+        </main>
 
         {/* 푸터 */}
         <footer className="bg-black text-white text-sm px-4 py-6 text-center">
