@@ -26,7 +26,7 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
         boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
       }}
     >
-      <motion.div
+      {/* <motion.div
         className="bg-[#5667B6] rounded-t-lg h-7 font-bold -z-10 absolute top-0 -translate-y-full left-4 py-1 pl-4 pr-3 text-white text-sm"
         initial={{ x: -20, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -37,6 +37,25 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
         <div className="absolute -top-[0.35rem] left-14 right-0 -z-20 h-full">
           <div className="bg-[#5667B6] h-full w-16 rounded-l-full rotate-45 transform origin-top-left"></div>
         </div>
+      </motion.div> */}
+      <motion.div
+        className="absolute -top-8 left-4 right-0 -z-20 h-full"
+        initial={{ x: -20, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="124" height="60" viewBox="0 0 164 67" fill="none">
+          <path
+            d="M0.687866 12.9563C0.687866 6.32889 6.06045 0.956299 12.6879 0.956299H80.3993C89.7881 0.956299 97.3992 8.56746 97.3992 17.9563V46.8808C97.3992 48.5376 96.0561 49.8808 94.3992 49.8808H3.68786C2.03101 49.8808 0.687866 48.5376 0.687866 46.8808V12.9563Z"
+            fill="#5667B6"
+          />
+          <path
+            d="M81.2169 4.37318C84.021 2.33578 87.818 2.33578 90.622 4.37318L133.236 35.3365C139.505 39.8919 136.283 49.8085 128.533 49.8085H43.3057C35.5561 49.8085 32.3338 39.8919 38.6032 35.3365L81.2169 4.37318Z"
+            fill="#5667B6"
+          />
+        </svg>
+        <p className="text-white font-bold absolute top-2.5 text-sm left-4">{folder}</p>
       </motion.div>
       <motion.div
         className="bg-[#647AE1] rounded-t-lg py-2.5 text-white text-xl font-bold text-center"

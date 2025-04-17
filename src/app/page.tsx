@@ -20,9 +20,7 @@ export default function Home() {
     <AnimatePresence>
       <div className="min-h-screen flex flex-col">
         <TopNav />
-
-        <main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4 flex-1">
-          {/* 시스템 소개 */}
+        <main className="w-full pt-32 md:pt-40 max-w-4xl mx-auto pb-20 px-4">
           <SectionHeader
             title="SYSTEM to AGENT, 시스템의 에이전트화"
             subtitle={
@@ -140,6 +138,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
+
           {/* 상담신청 */}
           <motion.div
             className="mt-24"
@@ -156,7 +155,6 @@ export default function Home() {
 
          {/* 푸터 */}
       <Footer />
-
       </div>
     </AnimatePresence>
   )
