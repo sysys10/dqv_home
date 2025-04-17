@@ -15,7 +15,7 @@ export default function InfoTab({ title, subTitle }: InfoTabProps) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-lg font-bold bg-[#647AE1] text-white py-2 px-4">{title}</h2>
+      <h2 className="text-lg font-bold text-nowrap bg-[#647AE1] text-white py-2 px-4">{title}</h2>
       <p className="text-sm font-medium text-center bg-[#F4F4F4] p-4">{subTitle}</p>
     </motion.div>
   )

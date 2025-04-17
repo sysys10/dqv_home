@@ -34,7 +34,7 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
         transition={{ duration: 0.3, delay: 0.2 }}
       >
         {folder}
-        <div className="absolute -top-1 left-14 right-0 -z-20 h-full">
+        <div className="absolute -top-[0.35rem] left-14 right-0 -z-20 h-full">
           <div className="bg-[#5667B6] h-full w-16 rounded-l-full rotate-45 transform origin-top-left"></div>
         </div>
       </motion.div>

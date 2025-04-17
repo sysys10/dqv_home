@@ -1,9 +1,37 @@
 'use client'
 import { useState } from 'react'
+import { Input } from './input'
 
+type FormType = {
+  name: string
+  email: string
+  p_num: string
+  c_name: string
+  b_name: string
+}
+
+const formFields = [
+  { field: 'name', placeholder: '이름 *' },
+  { field: 'email', placeholder: '회사 이메일 *' },
+  { field: 'p_num', placeholder: '연락처 *' },
+  { field: 'c_name', placeholder: '회사(단체)명 *' },
+  { field: 'b_name', placeholder: '부서/직함' },
+]
 export default function ConsultForm() {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false)
   const [showMarketingModal, setShowMarketingModal] = useState(false)
+  const [formInput, setFormInput] = useState<FormType>({ name: '', email: '', p_num: '', c_name: '', b_name: '' })
+  const handleInputChange = (field: keyof FormType, value: string) => {
+    setFormInput((prev) => ({
+      ...prev,
+      [field]: value,
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Form submitted:', formInput)
+  }
 
   return (
     <div className="flex flex-col md:flex-row gap-8 mt-8 md:mt-12">
@@ -15,13 +43,14 @@ export default function ConsultForm() {
         <p className="text-[#202F76] font-semibold">business@daquv.com</p>
       </div>
 
-      <form className="flex-1 space-y-3">
-        {['이름 *', '회사 이메일 *', '연락처 *', '회사(단체)명 *', '부서/직함'].map((placeholder, i) => (
-          <input
-            key={i}
+      <form onSubmit={handleSubmit} className="flex-1 space-y-3">
+        {formFields.map((item) => (
+          <Input
+            key={item.field}
             type="text"
-            placeholder={placeholder}
-            className="w-full px-4 py-2 rounded bg-[#647AE1] text-white placeholder-white"
+            placeholder={item.placeholder}
+            value={formInput[item.field as keyof FormType]}
+            onChange={(e) => handleInputChange(item.field as keyof FormType, e.target.value)}
           />
         ))}
 
@@ -62,7 +91,10 @@ export default function ConsultForm() {
 
       {/* 팝업 예시 */}
       {showPrivacyModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div
+          onClick={() => setShowPrivacyModal(!showPrivacyModal)}
+          className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+        >
           <div className="bg-white p-6 rounded shadow-lg max-w-md w-full">
             <h4 className="font-semibold text-lg mb-4">개인정보 수집 동의</h4>
             <p className="text-sm text-gray-700">여기에 상세 내용 입력</p>
