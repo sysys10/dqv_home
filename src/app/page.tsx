@@ -8,7 +8,7 @@ import VideoSection from '@/components/ui/VideoSection'
 import ExampleFolder from '@/components/ui/ExampleFolder'
 import TeamMember from '@/components/ui/TeamProfiles'
 import ConsultForm from '@/components/ui/ConsultForm'
-import Footer from '@/components/ui/footer'
+import Footer from '@/components/ui/Footer'
 
 import { infoTabs, qv1advantage } from '@/constants/infotab.constant'
 import { dqvIntroVideoId } from '@/constants/video.constant'
@@ -138,7 +138,6 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-
           {/* 상담신청 */}
           <motion.div
             className="mt-24"
@@ -153,8 +152,8 @@ export default function Home() {
           </motion.div>
         </main>
 
-         {/* 푸터 */}
-      <Footer />
+        {/* 푸터 */}
+        <Footer />
       </div>
     </AnimatePresence>
   )
