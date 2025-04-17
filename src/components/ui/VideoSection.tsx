@@ -7,7 +7,7 @@ interface YouTubeVideoProps {
   videoId: string
 }
 
-export default function VideoSection({ videoId = 'Mw_x4HYXHhI' }: YouTubeVideoProps) {
+export default function VideoSection({ videoId = 'amNjXnp-6-s' }: YouTubeVideoProps) {
   return (
     <motion.div className="w-full mt-8">
       <motion.div className="aspect-video w-full overflow-hidden rounded-lg shadow-lg">
