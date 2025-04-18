@@ -16,7 +16,7 @@ export default function TopNav() {
       style={{
         backgroundColor: yHeight > 0 ? '#647AE1' : 'transparent',
         color: yHeight > 0 ? 'white' : 'black',
-      }}
+      }as React.CSSProperties}
       className="h-16 fixed top-0 left-0 right-0 z-50 w-full border-b transition-all duration-300 border-gray-200"
     >
       <nav className="flex max-w-6xl mx-auto items-center justify-between h-full px-4">
@@ -36,9 +36,13 @@ export default function TopNav() {
           />
         </motion.div>
         <div className="flex items-center gap-4 text-lg font-bold">
-          {['/#customer-cases', '/#news', '/'].map((href, index) => (
+          {[
+              { href: '/customer-cases', label: '고객사례' },
+              { href: '/news', label: '소식' },
+              { href: '/blog', label: '블로그' },
+            ].map((item, index) => (
             <motion.div
-              key={href}
+              key={item.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -49,8 +53,8 @@ export default function TopNav() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href={href}>
-                {href === '/#customer-cases' ? '고객사례' : href === '/#news' ? '소식' : '블로그'}
+              <Link href={item.href}>
+              {item.label}
               </Link>
             </motion.div>
           ))}

@@ -24,7 +24,7 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
       whileHover={{
         y: -5,
         boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-      }}
+      }as any}
     >
       {/* <motion.div
         className="bg-[#5667B6] rounded-t-lg h-7 font-bold -z-10 absolute top-0 -translate-y-full left-4 py-1 pl-4 pr-3 text-white text-sm"
@@ -91,7 +91,7 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
       {type === 'link' && (
         <motion.div
           className="p-4 bg-gray-100 flex justify-center"
-          whileHover={{ backgroundColor: '#ebedf9' }}
+          whileHover={{ backgroundColor: '#ebedf9' } as any}
           transition={{ duration: 0.2 }}
         >
           <motion.a
@@ -100,7 +100,7 @@ export default function ExampleFolder({ folder, name, desc, type, href }: Exampl
             whileHover={{
               scale: 1.03,
               backgroundColor: '#344297',
-            }}
+            }as any}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           >
