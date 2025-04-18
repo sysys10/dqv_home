@@ -1,26 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { CustomerCase } from '../../types/customer.types'
-import { getAllCustomerCases } from '../../services/customerService'
+import React from 'react'
 import Link from 'next/link'
+import { useCustomerHook } from '@/hooks/query/useCustomerHook'
 
 const CustomerList: React.FC = () => {
-  const [customerCases, setCustomerCases] = useState<CustomerCase[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchCustomerCases = async () => {
-      try {
-        const cases = await getAllCustomerCases()
-        setCustomerCases(cases)
-        setLoading(false)
-      } catch (error) {
-        console.error('Error fetching customer cases:', error)
-        setLoading(false)
-      }
-    }
-
-    fetchCustomerCases()
-  }, [])
+  const { customerCases, loading } = useCustomerHook()
 
   if (loading) {
     return <div>로딩 중...</div>

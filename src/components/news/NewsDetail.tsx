@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import { NewsItem } from '../../types/news.types'
-import { getNewsById, getAllNews } from '../../services/newsService'
+import React, { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useNewsDetailHook } from '@/hooks/query/useNewsHook'
 
 const NewsDetail: React.FC = () => {
   const searchParams = useSearchParams()
   const newsId = Number(searchParams.get('newsId') || '0')
 
-  const [newsItem, setNewsItem] = useState<NewsItem | null>(null)
-  const [relatedNews, setRelatedNews] = useState<NewsItem[]>([])
-  const [loading, setLoading] = useState(true)
+  const { newsItem, loading, relatedNews, fetchNewsItem, fetchRelatedNews } = useNewsDetailHook()
+
+  useEffect(() => {
+    if (newsId !== 0) {
+      fetchNewsItem(newsId)
+      fetchRelatedNews()
+    }
+  }, [newsId])
 
   // 뉴스 타입에 따른 클래스 및 텍스트 매핑
   const NEWS_TYPE_TEXT = {
@@ -22,35 +26,6 @@ const NewsDetail: React.FC = () => {
     R: 'press',
     N: 'insite',
   }
-
-  useEffect(() => {
-    const fetchNewsItem = async () => {
-      if (newsId === 0) return
-
-      try {
-        setLoading(true)
-        const newsData = await getNewsById(newsId)
-
-        if (newsData && (newsData.newsType === 'R' || newsData.newsType === 'N')) {
-          setNewsItem(newsData)
-
-          // 관련 뉴스 가져오기 (현재 뉴스 제외하고 같은 타입)
-          const allNews = await getAllNews()
-          const related = allNews
-            .filter((item) => item.newsId !== newsId && item.newsType === newsData.newsType && item.useYn === 'Y')
-            .slice(0, 3) // 최대 3개만 표시
-
-          setRelatedNews(related)
-        }
-      } catch (error) {
-        console.error('Error fetching news item:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchNewsItem()
-  }, [newsId])
 
   if (loading) {
     return <div>로딩 중...</div>

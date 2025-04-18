@@ -1,42 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { CustomerCase } from '../../types/customer.types'
-import { getCustomerCaseById, getAllCustomerCases } from '../../services/customerService'
+import React, { useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import { useCustomerDetailHook } from '@/hooks/query/useCustomerHook'
 
 const CustomerDetail: React.FC = () => {
   const searchParams = useSearchParams()
   const newsId = Number(searchParams.get('newsId') || '0')
 
-  const [customerCase, setCustomerCase] = useState<CustomerCase | null>(null)
-  const [relatedCases, setRelatedCases] = useState<CustomerCase[]>([])
-  const [loading, setLoading] = useState(true)
+  const { customerCase, loading, relatedCases, fetchCustomerCase, fetchRelatedCases } = useCustomerDetailHook()
 
   useEffect(() => {
-    const fetchCustomerCase = async () => {
-      if (newsId === 0) return
-
-      try {
-        setLoading(true)
-        const caseData = await getCustomerCaseById(newsId)
-
-        if (caseData) {
-          setCustomerCase(caseData)
-
-          // 관련 고객사례 가져오기 (현재 케이스 제외)
-          const allCases = await getAllCustomerCases()
-          const related = allCases.filter((item) => item.newsId !== newsId).slice(0, 3) // 최대 3개만 표시
-
-          setRelatedCases(related)
-        }
-      } catch (error) {
-        console.error('Error fetching customer case:', error)
-      } finally {
-        setLoading(false)
-      }
+    if (newsId !== 0) {
+      fetchCustomerCase(newsId)
+      fetchRelatedCases()
     }
-
-    fetchCustomerCase()
   }, [newsId])
 
   if (loading) {
