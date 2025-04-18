@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import Head from 'next/head'
+import TopNav from '@/components/layout/TopNav'
+import Footer from '@/components/ui/Footer'
 
 const notosanskr = Noto_Sans_KR({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -10,7 +12,7 @@ const notosanskr = Noto_Sans_KR({
 
 export const metadata: Metadata = {
   title: 'DQV_HOME',
-  description: 'DQV_HOME'
+  description: 'DQV_HOME',
 }
 
 export default function RootLayout({
@@ -21,7 +23,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <SEO />
-      <body className={`${notosanskr.className} antialiased`}>{children}</body>
+      <body className={`${notosanskr.className} antialiased`}>
+        <TopNav />
+
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }

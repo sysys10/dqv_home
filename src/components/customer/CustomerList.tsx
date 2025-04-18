@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { CustomerCase } from '../../types/customer.types';
-import { getAllCustomerCases } from '../../services/customerService';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React, { useEffect, useState } from 'react'
+import { CustomerCase } from '../../types/customer.types'
+import { getAllCustomerCases } from '../../services/customerService'
+import Link from 'next/link'
 
 const CustomerList: React.FC = () => {
-  const [customerCases, setCustomerCases] = useState<CustomerCase[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [customerCases, setCustomerCases] = useState<CustomerCase[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-
     const fetchCustomerCases = async () => {
       try {
-        const cases = await getAllCustomerCases();
-        setCustomerCases(cases);
-        setLoading(false);
+        const cases = await getAllCustomerCases()
+        setCustomerCases(cases)
+        setLoading(false)
       } catch (error) {
-        console.error('Error fetching customer cases:', error);
-        setLoading(false);
+        console.error('Error fetching customer cases:', error)
+        setLoading(false)
       }
-    };
+    }
 
-    fetchCustomerCases();
-  }, []);
+    fetchCustomerCases()
+  }, [])
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div>로딩 중...</div>
   }
 
   return (
@@ -45,31 +38,33 @@ const CustomerList: React.FC = () => {
         <div className="sub-wrap">
           <ul className="sub-customer-list sublist" id="customerList" data-aos="fade-up">
             {customerCases.map((item) => {
-              const titleParts = item.newsTitle.split(':');
-              const customerName = titleParts[0];
-              const description = titleParts[1] || '';
-              const hashTags = item.hashTags.split(',').slice(0, 3);
+              const titleParts = item.newsTitle.split(':')
+              const customerName = titleParts[0]
+              const description = titleParts[1] || ''
+              const hashTags = item.hashTags.split(',').slice(0, 3)
 
               return (
                 <li key={item.newsId}>
-                  <Link to={`/customer/contents?newsId=${item.newsId}`}>
+                  <Link href={`/customer/contents?newsId=${item.newsId}`}>
                     <img src={item.imgUrl} alt={`${customerName} 고객사례 이미지`} />
                     <p className="customer-tit">{customerName}</p>
                     <p className="customer-text">{description}</p>
                     <ul className="customer-tag">
                       {hashTags.map((tag, idx) => (
-                        <li key={idx}><p>{tag}</p></li>
+                        <li key={idx}>
+                          <p>{tag}</p>
+                        </li>
                       ))}
                     </ul>
                   </Link>
                 </li>
-              );
+              )
             })}
           </ul>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default CustomerList;
+export default CustomerList

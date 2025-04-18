@@ -1,51 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { NewsItem } from '../../types/news.types';
-import { getAllNews } from '../../services/newsService';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+'use client'
+import React, { useEffect, useState } from 'react'
+import { NewsItem } from '../../types/news.types'
+import { getAllNews } from '../../services/newsService'
+import Link from 'next/link'
 
 const NewsList: React.FC = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<NewsItem[]>([])
+  const [loading, setLoading] = useState(true)
 
   // 뉴스 타입에 따른 클래스 및 텍스트 매핑
   const NEWS_TYPE_TEXT = {
-    'R': '언론보도',
-    'N': '인사이트'
-  };
+    R: '언론보도',
+    N: '인사이트',
+  }
 
   const NEWS_TYPE_STYLE = {
-    'R': 'press',
-    'N': 'insite'
-  };
+    R: 'press',
+    N: 'insite',
+  }
 
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-
     const fetchNews = async () => {
       try {
-        const allNews = await getAllNews();
+        const allNews = await getAllNews()
         // 언론보도(R)와 인사이트(N) 타입만 필터링하고, useYn이 'Y'인 것만 표시
-        const filteredNews = allNews.filter(item => 
-          (item.newsType === 'R' || item.newsType === 'N') && item.useYn === 'Y'
-        );
-        setNews(filteredNews);
-        setLoading(false);
+        const filteredNews = allNews.filter(
+          (item) => (item.newsType === 'R' || item.newsType === 'N') && item.useYn === 'Y',
+        )
+        setNews(filteredNews)
+        setLoading(false)
       } catch (error) {
-        console.error('Error fetching news:', error);
-        setLoading(false);
+        console.error('Error fetching news:', error)
+        setLoading(false)
       }
-    };
+    }
 
-    fetchNews();
-  }, []);
+    fetchNews()
+  }, [])
 
   if (loading) {
-    return <div>로딩 중...</div>;
+    return <div>로딩 중...</div>
   }
 
   return (
@@ -59,10 +53,10 @@ const NewsList: React.FC = () => {
       <section className="sub-content sub-back-gray">
         <div className="sub-wrap">
           <ul className="sub-news-list sublist" id="newsList" data-aos="fade-up">
-            {news.map(item => (
+            {news.map((item) => (
               <li key={item.newsId}>
-                <Link 
-                  to={`/news/contents?newsId=${item.newsId}`} 
+                <Link
+                  href={`/news/detail?newsId=${item.newsId}`}
                   className={NEWS_TYPE_STYLE[item.newsType as 'R' | 'N']}
                 >
                   <p className="sub-news-type">{NEWS_TYPE_TEXT[item.newsType as 'R' | 'N']}</p>
@@ -74,7 +68,7 @@ const NewsList: React.FC = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default NewsList;
+export default NewsList
